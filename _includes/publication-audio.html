@@ -1,0 +1,39 @@
+<section class="publication-audio" aria-label="Publication narration" data-publication-audio>
+  <div class="narration-heading">
+    <button class="narration-play" type="button" aria-label="Play narration" hidden>
+      <i class="fas fa-play" aria-hidden="true"></i>
+    </button>
+    <div>
+      <p class="narration-title">Listen to this publication</p>
+      <p class="narration-description">Synthetic narration <span aria-hidden="true">·</span> British English</p>
+    </div>
+  </div>
+  <audio controls preload="none" aria-label="Publication narration" src="{{ page.narration_audio | relative_url }}"></audio>
+  <div class="narration-controls" hidden>
+    <div class="narration-timeline">
+      <div class="narration-waveform" aria-hidden="true"></div>
+      <input class="narration-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek narration" disabled>
+    </div>
+    <div class="narration-toolbar">
+      <div class="narration-position">
+        <div class="narration-time" aria-hidden="true"><span data-elapsed>0:00</span><span class="narration-total"> / <span data-duration>—:—</span></span></div>
+        <p class="narration-current-chapter" role="status" aria-live="polite" hidden></p>
+      </div>
+      <div class="narration-actions">
+        <button type="button" data-skip="-15" aria-label="Rewind 15 seconds" disabled><i class="fas fa-rotate-left" aria-hidden="true"></i><span>15</span></button>
+        <button type="button" data-skip="15" aria-label="Forward 15 seconds" disabled><span>15</span><i class="fas fa-rotate-right" aria-hidden="true"></i></button>
+        <label class="narration-speed">Speed
+          <select aria-label="Narration speed">
+            <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option>
+          </select>
+        </label>
+        <button class="narration-chapters-toggle" type="button" aria-expanded="false" aria-controls="narration-chapters-{{ page.slug }}" hidden><i class="fas fa-list-ul" aria-hidden="true"></i><span>Chapters</span></button>
+        <a class="narration-download" href="{{ page.narration_audio | relative_url }}" download><i class="fas fa-download" aria-hidden="true"></i><span>Download</span></a>
+      </div>
+    </div>
+    <div class="narration-chapters" id="narration-chapters-{{ page.slug }}" hidden>
+      <ol aria-label="Narration chapters"></ol>
+    </div>
+  </div>
+  <p class="narration-status" role="status" aria-live="polite"></p>
+</section>

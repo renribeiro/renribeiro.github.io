@@ -1,0 +1,26 @@
+---
+layout: compress
+swcache: true
+---
+
+[
+  {% for post in site.posts %}
+    {% assign highlighted_author = post.publication.highlight_author | default: site.social.name %}
+    {% capture search_authors %}{% for author in post.publication.authors %}{% if author == highlighted_author %}<strong>{{ author | escape }}</strong>{% else %}{{ author | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture %}
+    {% capture search_content %}{% include post-summary.html full_text=true %}{% endcapture %}
+    {% capture search_summary %}{% include post-summary.html %}{% endcapture %}
+    {% capture search_details %}{% if post.publication %}{{ post.publication.type }}{% if post.publication.venue %} · {{ post.publication.venue }}{% endif %} · {{ post.publication.year }}{% else %}{{ post.date | date: '%b %-d, %Y' }}{% endif %}{% endcapture %}
+    {
+      "title": {{ post.title | jsonify }},
+      "url": {{ post.url | relative_url | jsonify }},
+      "categories": {{ post.categories | join: ', ' | jsonify }},
+      "tags": {{ post.tags | join: ', ' | jsonify }},
+      "date": {{ post.date | jsonify }},
+      "authors": {{ post.publication.authors | join: ', ' | jsonify }},
+      "authors_html": {{ search_authors | jsonify }},
+      "details": {{ search_details | strip | jsonify }},
+      "summary": {{ search_summary | strip | jsonify }},
+      "content": {{ search_content | strip | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

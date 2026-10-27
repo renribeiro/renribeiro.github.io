@@ -1,0 +1,78 @@
+- title: Experience
+  id: experience
+  entries:
+    - date: September 2024 - present
+      organization: Miraikan - The National Museum of Emerging Science and Innovation
+      location: Tokyo, Japan
+      roles:
+        - title: Research Engineer
+          date: September 2024 - present
+          employment_type: Full-time
+    - date: January 2024 - August 2024
+      organization: LASIGE, Faculdade de Ciências da Universidade de Lisboa
+      location: Lisboa, Portugal
+      roles:
+        - title: Research Assistant
+          date: January 2024 - August 2024
+    - date: March 2020 - March 2023
+      organization: Anditec, Tecnologias de Reabilitação Lda
+      location: Lisboa, Portugal
+      roles:
+        - title: Software Engineer
+          date: July 2020 - March 2023
+          employment_type: Full-time
+        - title: Website Designer
+          date: March 2020 - July 2020
+          employment_type: Internship
+    - date: March 2017 - July 2017
+      organization: heeX - Healthcare Experts
+      location: Belém, Portugal
+      roles:
+        - title: Android Developer
+          date: March 2017 - July 2017
+          employment_type: Internship
+    - date: March 2014 - July 2014
+      organization: Acidados
+      location: Cascais, Portugal
+      roles:
+        - title: IT Technician
+          date: March 2014 - July 2014
+          employment_type: Internship
+
+- title: Education
+  id: education
+  entries:
+    - organization: Faculdade de Ciências da Universidade de Lisboa
+      location: Lisboa, Portugal
+      qualifications:
+        - title: MSc in Informatics
+          date: 2021 - 2023
+          links:
+            - label: Master's dissertation
+              url: /posts/masters-dissertation/
+    - organization: Escola Superior de Tecnologia do Instituto Politécnico de Setúbal
+      location: Setúbal, Portugal
+      qualifications:
+        - title: BSc in Biomedical Technology
+          date: 2017 - 2020
+        - title: Higher Professional Technical Diploma
+          field: Web Programming, Devices and Mobile Applications
+          date: 2015 - 2017
+
+- title: Selected activities
+  id: activities
+  entries:
+    - date: May 2025
+      title: POST-CHI networking event
+      organization: Miraikan, Tokyo
+      description: Organized the event.
+    - date: April 2024
+      title: 9th LASIGE Workshop
+      organization: Lisboa, Portugal
+      description: Presented a poster based on our CHI 2024 VR locomotion paper.
+
+- title: Academic service
+  id: service
+  entries:
+    - title: Conference peer reviewer
+      description: CHI, ASSETS, UIST, VRST, and CHI PLAY.

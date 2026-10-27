@@ -1,0 +1,121 @@
+#search {
+  #search-input { min-width: 0; }
+
+  .search-shortcut {
+    flex-shrink: 0;
+    margin-inline-start: 0.25rem;
+    padding: 0.15rem 0.3rem;
+    border: 1px solid var(--btn-border-color);
+    border-radius: 0.3rem;
+    background: var(--card-bg);
+    color: var(--text-muted-color);
+    font: inherit;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover { color: var(--text-color); }
+    &:focus-visible { outline: 2px solid var(--link-color); outline-offset: 2px; }
+
+    &[hidden] { display: none; }
+
+    @media (max-width: 991.98px) {
+      display: none;
+    }
+  }
+}
+
+#search-result-wrapper > .content {
+  max-width: 68rem;
+}
+
+#search-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  > p {
+    grid-column: 1 / -1;
+  }
+
+  article.search-result {
+    min-width: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    &:nth-child(n) {
+      margin: 0;
+      right: auto;
+    }
+  }
+
+  a.search-result-card {
+    height: 100%;
+    position: relative;
+    isolation: isolate;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--btn-border-color);
+    border-radius: 0.75rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    &::before {
+      inset: 0;
+      width: auto;
+      height: auto;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:hover {
+      color: var(--text-color) !important;
+      border-color: var(--btn-border-color) !important;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--link-color);
+      outline-offset: 3px;
+    }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      padding: 0;
+      color: var(--heading-color);
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    p {
+      margin: 0;
+      white-space: normal;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    .search-result-authors,
+    .search-result-details {
+      color: var(--text-muted-color);
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+  }
+}

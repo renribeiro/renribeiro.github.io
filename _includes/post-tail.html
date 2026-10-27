@@ -1,0 +1,6 @@
+{% if page.publication_page and page.related_publications.size > 0 %}
+  {% include related-publications.html %}
+{% else %}
+  {% include related-posts.html lang=include.lang %}
+{% endif %}
+{% include post-nav.html lang=include.lang %}

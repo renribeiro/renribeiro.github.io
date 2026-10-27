@@ -1,0 +1,32 @@
+{% assign related_publications = '' | split: '' %}
+{% for relation in page.related_publications %}
+  {% assign related_post = site.posts | where: 'slug', relation.slug | first %}
+  {% if related_post and related_post.url != page.url %}
+    {% assign related_publications = related_publications | push: related_post %}
+  {% endif %}
+{% endfor %}
+{% if related_publications.size > 0 %}
+  <aside id="related-posts" class="related-publications" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">{{ page.related_heading | default: 'Related publications' | escape }}</h3>
+    <nav class="row row-cols-1{% if related_publications.size > 1 %} row-cols-md-2{% endif %} g-4 mb-4" aria-label="Related publications">
+      {% for post in related_publications %}
+        {% assign relation = page.related_publications | where: 'slug', post.slug | first %}
+        <article class="col">
+          <a href="{{ post.url | relative_url }}" class="post-preview card h-100">
+            <div class="card-body">
+              <span class="small text-muted">{% if post.publication.venue_short %}{{ post.publication.venue_short | escape }} · {% endif %}{{ post.publication.type | escape }} · {{ post.publication.year }}</span>
+              <h4 class="pt-0 my-2">{{ post.title | escape }}</h4>
+              {% if post.publication.authors.size > 0 %}
+                {% assign author_limit = post.publication.author_preview_limit | default: post.publication.authors.size %}
+                <p class="text-muted">{% include publication-author-names.html publication=post.publication limit=author_limit %}{% if post.publication.authors.size > author_limit %}, et al.{% endif %}</p>
+              {% endif %}
+              {% unless relation.show_description == false %}
+                <div class="text-muted"><p>{{ relation.description | default: post.description | escape }}</p></div>
+              {% endunless %}
+            </div>
+          </a>
+        </article>
+      {% endfor %}
+    </nav>
+  </aside>
+{% endif %}

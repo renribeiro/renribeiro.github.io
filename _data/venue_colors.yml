@@ -1,0 +1,27 @@
+CHI:
+  light: '#5056ad'
+  dark: '#aeb9ff'
+
+ASSETS:
+  light: '#176d73'
+  dark: '#8bcbd0'
+
+UIST:
+  light: '#386b4a'
+  dark: '#a2c9ac'
+
+VRST:
+  light: '#765089'
+  dark: '#c6a6d9'
+
+RA-L:
+  light: '#8a4866'
+  dark: '#dfa8c0'
+
+Theses:
+  light: '#536579'
+  dark: '#bec9d6'
+
+arXiv:
+  light: '#80552c'
+  dark: '#d9b78d'

@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+<article class="px-1{% if page.publication_index %} publication-index{% endif %}">
+  {% if page.layout == 'page' or page.collection == 'tabs' or page.layout == 'categories' or page.layout == 'tags' %}
+    {% assign tab_key = page.title | downcase %}
+    {% assign title = site.data.locales[lang].tabs[tab_key] | default: page.title %}
+    {% unless page.publication_index %}
+      <h1 class="dynamic-title{% if page.hide_page_title %} visually-hidden{% endif %}">
+        {{ title }}
+      </h1>
+    {% endunless %}
+    <div class="content">
+      {{ content }}
+    </div>
+  {% else %}
+    {{ content }}
+  {% endif %}
+</article>
+{% if page.citation_dialog or page.layout == 'tag' %}{% include citation-dialog.html %}{% endif %}

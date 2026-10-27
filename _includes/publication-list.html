@@ -1,0 +1,13 @@
+{% assign publication_years = include.posts | group_by_exp: 'post', 'post.publication.year' | sort: 'name' | reverse %}
+<div class="publications">
+  {% for year in publication_years %}
+    <section aria-labelledby="publications-{{ year.name | escape }}">
+      <h2 id="publications-{{ year.name | escape }}">{{ year.name | escape }}</h2>
+      <ul class="list-unstyled">
+        {% for post in year.items %}
+          {% include publication-entry.html post=post %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>

@@ -1,0 +1,17 @@
+{%- assign author_limit = include.limit | default: include.publication.authors.size -%}
+{%- assign author_offset = include.offset | default: 0 -%}
+{%- assign highlighted_author = include.publication.highlight_author | default: site.social.name -%}
+{%- for author in include.publication.authors limit: author_limit offset: author_offset -%}
+  {%- capture affiliation_numbers -%}
+    {%- assign affiliation_separator = '' -%}
+    {%- if include.affiliations -%}
+      {%- for affiliation in include.publication.affiliations -%}
+        {%- if affiliation.authors contains author -%}
+          {{- affiliation_separator -}}{{- forloop.index -}}
+          {%- assign affiliation_separator = ', ' -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+  {% if author == highlighted_author %}<strong>{{ author | escape }}</strong>{% else %}{{ author | escape }}{% endif %}{% if include.affiliations or include.show_equal_contributors %}{% if include.publication.equal_contributors contains author %}<sup><span aria-hidden="true">*</span><span class="visually-hidden"> contributed equally; </span></sup>{% endif %}{% endif %}{% if affiliation_numbers != empty %}<sup class="research-affiliation-marker"><span class="visually-hidden"> affiliations </span>{{ affiliation_numbers }}</sup>{% endif %}{% unless forloop.last %}, {% endunless %}
+{%- endfor -%}

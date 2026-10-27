@@ -1,0 +1,28 @@
+<header class="research-header">
+  <h1 data-toc-skip>{{ page.title | escape }}</h1>
+  <div class="post-meta text-muted mb-3">
+    <span>
+      {{ site.data.locales[lang].post.posted }}
+      {% include datetime.html date=page.date tooltip=true lang=lang %}
+    </span>
+    {% if page.last_modified_at and page.last_modified_at != page.date %}
+      <span>
+        {{ site.data.locales[lang].post.updated }}
+        {% include datetime.html date=page.last_modified_at tooltip=true lang=lang %}
+      </span>
+    {% endif %}
+    {% include read-time.html content=content audio_minutes=page.narration_minutes prompt=true lang=lang %}
+  </div>
+  {% assign author_preview_limit = page.publication.author_preview_limit | default: page.publication.authors.size %}
+  {% if page.publication.authors.size > author_preview_limit %}
+    {% include publication-author-disclosure.html post=page context='page' author_class='research-authors' affiliations=true %}
+  {% else %}
+    <p class="research-authors">{% include publication-author-names.html publication=page.publication affiliations=true %}</p>
+    {% include publication-affiliations.html publication=page.publication %}
+  {% endif %}
+  {% if page.publication.advisors.size > 0 %}
+    <p class="research-advisors text-muted">{% if page.publication.advisors.size == 1 %}Advisor{% else %}Advisors{% endif %}: {{ page.publication.advisors | join: ', ' | escape }}</p>
+  {% endif %}
+  <p class="research-venue text-muted">{% if page.publication.venue %}{{ page.publication.venue | escape }} · {% endif %}{{ page.publication.year | escape }}</p>
+  {% include publication-resources.html post=page context='page' %}
+</header>

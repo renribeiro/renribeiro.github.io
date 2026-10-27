@@ -1,0 +1,26 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+@use 'main{% if jekyll.environment == "production" %}.bundle{% endif %}';
+@use 'custom/utilities';
+@use 'custom/news';
+@use 'custom/publications';
+@use 'custom/resume';
+@use 'custom/publication-filters';
+@use 'custom/venue-colors';
+@use 'custom/publication-detail';
+@use 'custom/publication-audio';
+@use 'custom/citation-dialog';
+@use 'custom/icons';
+@use 'custom/search';
+@use 'custom/quick-search';
+@use 'custom/display-settings';
+@use 'custom/sidebar';
+
+section[aria-labelledby="intro-title"] .content p {
+  text-align: justify;
+}

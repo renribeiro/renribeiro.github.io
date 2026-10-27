@@ -1,0 +1,21 @@
+- type: email
+  icon: fas fa-envelope
+  noblank: true
+
+- type: Google Scholar
+  icon: fa-brands fa-google-scholar
+  url: https://scholar.google.com/citations?hl=en&user=X8hTPxMAAAAJ
+
+- type: ResearchGate
+  icon: fa-brands fa-researchgate
+  url: https://www.researchgate.net/profile/Renato-Alexandre-Ribeiro
+  in_more_menu: true
+
+- type: ORCID
+  icon: fa-brands fa-orcid
+  url: https://orcid.org/0009-0003-8194-9065
+
+- type: Ciência Vitae
+  icon: custom-icon icon-ciencia-vitae
+  url: https://www.cienciavitae.pt//741D-7500-09DD
+  in_more_menu: true

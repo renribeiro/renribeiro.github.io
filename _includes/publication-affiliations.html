@@ -1,0 +1,10 @@
+{% if include.publication.affiliations.size > 0 %}
+  {% for affiliation in include.publication.affiliations %}
+    <p class="research-affiliation text-muted"><sup>{{ forloop.index }}</sup> {{ affiliation.name | escape }}</p>
+  {% endfor %}
+{% elsif include.publication.affiliation %}
+  <p class="research-affiliation text-muted">{{ include.publication.affiliation | escape }}</p>
+{% endif %}
+{% if include.publication.equal_contributors.size > 0 %}
+  <p class="research-author-note text-muted"><sup aria-hidden="true">*</sup> {{ include.publication.equal_contributors | join: ' and ' | escape }} contributed equally to this work.</p>
+{% endif %}

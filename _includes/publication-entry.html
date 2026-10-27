@@ -1,0 +1,29 @@
+{% assign publication_id = include.post.url | slugify | prepend: 'publication-' %}
+{% assign author_preview_limit = include.post.publication.author_preview_limit | default: include.post.publication.authors.size %}
+{% assign venue_group = include.post.publication.venue_group | default: include.post.publication.venue | default: 'Other publications' %}
+{% assign venue_colors = site.data.venue_colors[venue_group] %}
+<li class="publication-entry card-wrapper card post-preview" aria-labelledby="{{ publication_id }}" data-publication-venue="{{ venue_group | escape }}" data-publication-year="{{ include.post.publication.year | escape }}" data-publication-keywords="{{ include.post.tags | join: ' ' | escape }} {{ include.post.description | escape }}"{% if venue_colors %} style="--venue-light: {{ venue_colors.light | escape }}; --venue-dark: {{ venue_colors.dark | escape }};"{% endif %}>
+  <h3 class="publication-title">
+    <a href="{{ include.post.url | relative_url }}"><span id="{{ publication_id }}">{{ include.post.title | escape }}</span></a>
+  </h3>
+  {% if include.post.publication.authors.size > author_preview_limit %}
+    {% include publication-author-disclosure.html post=include.post context='card' author_class='publication-authors' show_equal_contributors=true %}
+  {% endif %}
+  {% if include.post.publication.authors.size <= author_preview_limit or include.post.publication.advisors.size > 0 %}
+    <p class="publication-authors">
+      {% if include.post.publication.authors.size > 0 and include.post.publication.authors.size <= author_preview_limit %}
+        <span class="publication-author-names">{% include publication-author-names.html publication=include.post.publication show_equal_contributors=true %}</span>
+      {% endif %}
+      {% if include.post.publication.advisors.size > 0 %}
+        <span class="publication-advisors text-muted">{% if include.post.publication.advisors.size == 1 %}Advisor{% else %}Advisors{% endif %}: {{ include.post.publication.advisors | join: ', ' | escape }}</span>
+      {% endif %}
+    </p>
+  {% endif %}
+  {% if include.post.publication.equal_contributors.size > 0 %}
+    <p class="publication-author-note text-muted"><span aria-hidden="true">*</span><span class="visually-hidden">An asterisk beside an author indicates </span> Equal contribution</p>
+  {% endif %}
+  <p class="publication-venue text-muted">
+    {% if include.post.publication.venue %}{{ include.post.publication.venue | escape }} · {% endif %}{{ include.post.publication.year | escape }}
+  </p>
+  {% include publication-resources.html post=include.post context='card' %}
+</li>

@@ -1,0 +1,21 @@
+<dialog id="citation-dialog" class="citation-dialog" aria-labelledby="citation-dialog-title">
+  <div class="citation-dialog-header">
+    <h2 id="citation-dialog-title" data-toc-skip>Export citation</h2>
+    <form method="dialog">
+      <button class="citation-close" type="submit" aria-label="Close citation dialog" autofocus><i class="fas fa-xmark" aria-hidden="true"></i></button>
+    </form>
+  </div>
+  <p class="citation-publication" data-citation-publication></p>
+  <label for="citation-text">BibTeX</label>
+  <textarea id="citation-text" readonly spellcheck="false" rows="12"></textarea>
+  <div class="citation-dialog-footer">
+    <p class="citation-status" role="status" aria-live="polite" data-citation-status></p>
+    <div class="citation-actions">
+      <a class="citation-action" data-citation-download download><i class="fas fa-download" aria-hidden="true"></i> Download</a>
+      <button class="citation-action citation-copy" data-citation-copy type="button" disabled>
+        <i class="far fa-copy" aria-hidden="true"></i><span>Copy</span>
+      </button>
+    </div>
+  </div>
+</dialog>
+<script src="{{ '/assets/js/citation-dialog.js' | relative_url }}" defer></script>

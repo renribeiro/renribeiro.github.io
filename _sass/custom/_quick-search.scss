@@ -1,0 +1,157 @@
+.quick-search {
+  width: min(44rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--btn-border-color);
+  border-radius: 1rem;
+  background: var(--main-bg);
+  color: var(--text-color);
+  box-shadow: 0 1rem 4rem rgb(0 0 0 / 30%);
+
+  &[open] { display: flex; flex-direction: column; }
+  &::backdrop { background: rgb(0 0 0 / 50%); }
+  .anchor { display: none; }
+
+  .quick-search-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem 0.25rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--heading-color);
+  }
+
+  button {
+    min-height: 2.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.4rem;
+    background: transparent;
+    color: var(--text-color);
+    font: inherit;
+
+    &:hover { background: var(--tag-hover); }
+    &:focus-visible { outline: 2px solid var(--link-color); outline-offset: 2px; }
+  }
+
+  .quick-search-close { flex-shrink: 0; width: 2.75rem; }
+
+  .quick-search-field {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.75rem;
+    margin: 0.5rem 1.25rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--text-muted-color);
+    border-radius: 0.6rem;
+
+    &:focus-within { outline: 2px solid var(--link-color); outline-offset: 2px; }
+
+    input {
+      width: 100%;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text-color);
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+
+      &::placeholder { color: var(--text-muted-color); opacity: 1; }
+    }
+  }
+
+  .quick-search-status {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0.25rem 1.25rem 0.75rem;
+    color: var(--text-muted-color);
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  #quick-search-options {
+    min-height: 0;
+    max-height: 48dvh;
+    padding: 0 0.65rem 0.75rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-padding: 0.5rem;
+  }
+
+  .quick-search-group {
+    margin: 0;
+    padding: 0.8rem 0.6rem 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted-color);
+  }
+
+  .quick-search-option {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.6rem;
+    border: 2px solid transparent;
+    border-radius: 0.6rem;
+    cursor: pointer;
+
+    &[aria-selected='true'] {
+      background: var(--tag-hover);
+      border-color: var(--link-color);
+    }
+
+    > i { flex: 0 0 1rem; color: var(--link-color); text-align: center; }
+    > div { min-width: 0; }
+    span { display: block; overflow-wrap: anywhere; }
+  }
+
+  .quick-search-option-title { font-size: 0.95rem; line-height: 1.5; color: var(--heading-color); }
+  .quick-search-option-details { margin-top: 0.2rem; font-size: 0.8rem; line-height: 1.6; color: var(--text-muted-color); }
+
+  .quick-search-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--btn-border-color);
+
+    p { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 0; font-size: 0.75rem; }
+    p > span { white-space: nowrap; }
+    button { padding: 0.3rem 0.6rem; color: var(--link-color); font-size: 0.8rem; }
+  }
+
+  kbd {
+    padding: 0.1rem 0.3rem;
+    border: 1px solid var(--text-muted-color);
+    border-radius: 0.25rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font: inherit;
+  }
+}
+
+body.quick-search-open { overflow: hidden; }
+
+html[data-display-line-spacing='relaxed'] .quick-search {
+  .quick-search-option-title,
+  .quick-search-option-details { line-height: 1.9; }
+}
+
+@media (forced-colors: active) {
+  .quick-search-option[aria-selected='true'] { border-color: Highlight; }
+}

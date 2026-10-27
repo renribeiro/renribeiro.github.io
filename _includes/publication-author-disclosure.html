@@ -1,0 +1,13 @@
+{% assign author_list_id = include.post.url | slugify | prepend: 'authors-' | append: '-' | append: include.context %}
+<div class="publication-author-disclosure" data-author-disclosure>
+  <p class="{{ include.author_class }}"><span class="publication-author-names">{% include publication-author-names.html publication=include.post.publication limit=include.post.publication.author_preview_limit affiliations=include.affiliations show_equal_contributors=include.show_equal_contributors %}<span data-author-ellipsis hidden>, …</span><span id="{{ author_list_id }}" data-author-remainder>, {% include publication-author-names.html publication=include.post.publication offset=include.post.publication.author_preview_limit affiliations=include.affiliations show_equal_contributors=include.show_equal_contributors %}</span></span></p>
+  <button type="button" class="publication-author-toggle" aria-expanded="true" aria-controls="{{ author_list_id }}{% if include.affiliations %} {{ author_list_id }}-affiliations{% endif %}" hidden>
+    <span class="publication-authors-show">Show all {{ include.post.publication.authors.size }} authors</span>
+    <span class="publication-authors-hide">Show fewer authors</span>
+  </button>
+  {% if include.affiliations %}
+    <div id="{{ author_list_id }}-affiliations" data-author-affiliations>
+      {% include publication-affiliations.html publication=include.post.publication %}
+    </div>
+  {% endif %}
+</div>

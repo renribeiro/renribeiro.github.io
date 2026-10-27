@@ -1,0 +1,27 @@
+{% if include.links %}
+  {% assign has_resume_links = false %}
+  {% for link in include.links %}
+    {% assign link_label = link.label | default: '' | strip %}
+    {% assign link_url = link.url | default: '' | strip %}
+    {% if link_label != empty and link_url != empty %}
+      {% assign has_resume_links = true %}
+    {% endif %}
+  {% endfor %}
+  {% if has_resume_links %}
+    <ul class="resume-links" aria-label="Related links">
+      {% for link in include.links %}
+        {% assign link_label = link.label | default: '' | strip %}
+        {% assign link_url = link.url | default: '' | strip %}
+        {% if link_label != empty and link_url != empty %}
+          <li>
+            {% if link.external %}
+              <a href="{{ link_url | escape }}" target="_blank" rel="noopener noreferrer">{{ link_label | escape }} <span class="visually-hidden">(opens in a new tab)</span></a>
+            {% else %}
+              <a href="{{ link_url | relative_url }}">{{ link_label | escape }}</a>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}

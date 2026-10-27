@@ -1,0 +1,12 @@
+<script src="{{ '/assets/js/theme-default.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/display-settings.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/quick-search.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/search-shortcut.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/publication-authors.js' | relative_url }}" defer></script>
+{% assign sidebar_more_types = site.data.contact | where: 'in_more_menu', true | map: 'type' %}
+{% if sidebar_more_types.size > 0 %}
+<script src="{{ '/assets/js/sidebar-profiles.js' | relative_url }}" data-more-profiles="{{ sidebar_more_types | join: '|' | escape }}" defer></script>
+{% endif %}
+{% unless jekyll.environment == 'production' %}
+<script src="{{ '/assets/js/local-preview.js' | relative_url }}" data-baseurl="{{ site.baseurl | default: '' | escape }}" defer></script>
+{% endunless %}

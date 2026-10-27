@@ -1,0 +1,22 @@
+---
+layout: page
+citation_dialog: true
+---
+
+{% assign publications = page.posts | where_exp: 'post', 'post.publication' %}
+<header class="publication-topic-header">
+  <p class="small text-muted">Publications by topic</p>
+  <h1><i class="fa fa-tag text-muted" aria-hidden="true"></i><span>{{ page.title | escape }}</span></h1>
+  <p class="text-muted">{{ publications.size }} {% if publications.size == 1 %}publication{% else %}publications{% endif %}</p>
+</header>
+<div class="content">
+  {% include publication-list.html posts=publications %}
+  {% assign other_posts = page.posts | where_exp: 'post', 'post.publication == nil' %}
+  {% if other_posts.size > 0 %}
+    <ul>
+      {% for post in other_posts %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

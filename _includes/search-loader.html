@@ -1,0 +1,28 @@
+{% capture result_elem %}
+  <article class="search-result">
+    <a class="search-result-card post-preview card" href="{url}">
+      <h2>{title}</h2>
+      <p class="search-result-authors">{authors_html}</p>
+      <p class="search-result-details">{details}</p>
+    </a>
+  </article>
+{% endcapture %}
+{% capture not_found %}<p class="mt-4">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const escapes = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
+      json: {{ '/assets/js/data/search.json' | relative_url | jsonify }},
+      searchResultTemplate: {{ result_elem | strip_newlines | jsonify }},
+      noResultsText: {{ not_found | jsonify }},
+      templateMiddleware: (prop, value) => {
+        /* Author names are escaped when Jekyll adds the emphasis markup. */
+        if (prop === 'authors_html') return value;
+        return String(value ?? '').replace(/[&<>"']/g, (character) => escapes[character]);
+      }
+    });
+  });
+</script>

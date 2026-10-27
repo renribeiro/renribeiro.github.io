@@ -1,0 +1,49 @@
+{% assign publication_type = include.post.publication.type | downcase %}
+{% if include.post.publication.type or include.post.publication.links.size > 0 %}
+  <ul class="publication-links list-unstyled" aria-label="Publication type and resources for {{ include.post.title | escape }}">
+    {% if include.post.publication.type %}
+      <li>
+        <span class="publication-badge">
+          {% if publication_type contains 'dissertation' or publication_type contains 'thesis' %}
+            <i class="fas fa-graduation-cap fa-fw" aria-hidden="true"></i>
+          {% else %}
+            <i class="fas fa-chalkboard-user fa-fw" aria-hidden="true"></i>
+          {% endif %}
+          <span>{% unless publication_type contains 'dissertation' or publication_type contains 'thesis' %}{% if include.post.publication.venue_short and include.post.publication.venue_short != empty %}{{ include.post.publication.venue_short | escape }} · {% endif %}{% endunless %}{{ include.post.publication.type | escape }}</span>
+        </span>
+      </li>
+    {% endif %}
+    {% for link in include.post.publication.links %}
+      {% unless link.url and link.url != empty %}{% continue %}{% endunless %}
+      {% if include.context == 'card' and link.show_on_card == false %}{% continue %}{% endif %}
+      {% if include.context == 'page' and link.show_on_page == false %}{% continue %}{% endif %}
+      {% assign link_label = link.label | downcase %}
+      {% case link_label %}
+        {% when 'archive', 'repository' %}{% assign resource_icon = 'fas fa-box-archive' %}
+        {% when 'scholar' %}{% assign resource_icon = 'fas fa-graduation-cap' %}
+        {% when 'doi' %}{% assign resource_icon = 'fas fa-globe' %}
+        {% when 'paper', 'pdf' %}{% assign resource_icon = 'far fa-file-lines' %}
+        {% when 'poster', 'workshop poster' %}{% assign resource_icon = 'far fa-file-image' %}
+        {% when 'video', 'presentation video' %}
+          {% if link.url contains 'youtube.com/' or link.url contains 'youtu.be/' %}
+            {% assign resource_icon = 'fa-brands fa-youtube' %}
+          {% else %}
+            {% assign resource_icon = 'fas fa-play' %}
+          {% endif %}
+        {% when 'code' %}{% assign resource_icon = 'fas fa-code' %}
+        {% when 'bibtex' %}{% assign resource_icon = 'fas fa-quote-right' %}
+        {% when 'slides', 'talk slide', 'talk slides' %}{% assign resource_icon = 'fas fa-display' %}
+        {% else %}{% assign resource_icon = 'fas fa-link' %}
+      {% endcase %}
+      <li>
+        <a class="tag publication-resource" data-resource="{{ link_label | slugify }}" {% if link_label == 'bibtex' %}data-citation-title="{{ include.post.title | escape }}"{% endif %} href="{{ link.url | relative_url | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.label | escape }} (opens in a new tab)">
+          <i class="{{ resource_icon }} fa-fw" aria-hidden="true"></i>
+          <span class="publication-resource-label">
+            <span>{{ link.label | escape }}</span>
+            <span class="publication-resource-label-reserve" aria-hidden="true">{{ link.label | escape }}</span>
+          </span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

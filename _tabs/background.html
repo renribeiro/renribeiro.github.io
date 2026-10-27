@@ -1,0 +1,99 @@
+---
+layout: page
+title: Background
+permalink: /background/
+icon: fas fa-id-card
+order: 2
+hide_page_title: true
+---
+
+<div class="resume-page">
+  {% for section in site.data.resume %}
+    <section class="resume-section resume-section--{{ section.id }}" aria-labelledby="resume-{{ section.id }}">
+      <h2 id="resume-{{ section.id }}">{{ section.title }}</h2>
+      <div class="resume-list">
+        {% if section.id == 'education' %}
+          {% for entry in section.entries %}
+            {% if forloop.index == 2 %}
+              <div class="resume-more">
+                <div class="resume-more-content" id="resume-older-education" role="region" aria-label="Earlier education">
+            {% endif %}
+            <div class="resume-education-group">
+              {% for qualification in entry.qualifications %}
+                <div class="resume-item">
+                  <p class="resume-date">{{ qualification.date }}</p>
+                  <span class="resume-rail" aria-hidden="true"></span>
+                  <div class="resume-card">
+                    {% if forloop.first %}
+                      <h3>{{ entry.organization }}</h3>
+                      {% if entry.location %}<p class="resume-location">{{ entry.location }}</p>{% endif %}
+                    {% endif %}
+                    <div class="resume-qualification">
+                      <h4>{{ qualification.title }}</h4>
+                      {% if qualification.field %}<p class="resume-field">{{ qualification.field }}</p>{% endif %}
+                      {% include resume-links.html links=qualification.links %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          {% if section.entries.size > 1 %}
+                </div>
+                <button class="resume-more-toggle" type="button" aria-expanded="false" aria-controls="resume-older-education" hidden>
+                  <span class="resume-more-label"><span class="resume-more-open">Show earlier education</span><span class="resume-more-close">Show less</span></span>
+                </button>
+              </div>
+          {% endif %}
+        {% else %}
+          {% for entry in section.entries %}
+            {% if section.id == 'experience' and forloop.index == 2 %}
+              <div class="resume-more">
+                <div class="resume-more-content" id="resume-older-experience" role="region" aria-label="Earlier experience">
+            {% endif %}
+            <div class="resume-item{% unless entry.date %} resume-item--undated{% endunless %}">
+              {% if entry.date %}<p class="resume-date">{{ entry.date }}</p>{% endif %}
+              <span class="resume-rail" aria-hidden="true"></span>
+              <div class="resume-card">
+                {% if entry.roles %}
+                  <h3>{{ entry.organization }}</h3>
+                  {% if entry.location %}<p class="resume-location">{{ entry.location }}</p>{% endif %}
+                  <ol class="resume-subentries">
+                    {% for role in entry.roles %}
+                      <li class="resume-subentry">
+                        <div class="resume-subentry-heading">
+                          <h4>{{ role.title }}</h4>
+                          {% assign employment_type = role.employment_type | default: '' | strip %}
+                          {% if employment_type != empty %}<span class="resume-employment-type">{{ employment_type }}</span>{% endif %}
+                        </div>
+                        {% if entry.roles.size > 1 %}<p class="resume-subentry-date">{{ role.date }}</p>{% endif %}
+                        {% assign role_description = role.description | default: '' | strip %}
+                        {% if role_description != empty %}<p class="resume-description">{{ role_description }}</p>{% endif %}
+                        {% include resume-links.html links=role.links %}
+                      </li>
+                    {% endfor %}
+                  </ol>
+                {% else %}
+                  <h3>{{ entry.title }}</h3>
+                  {% if entry.organization %}<p class="resume-organization">{{ entry.organization }}</p>{% endif %}
+                  {% if entry.location %}<p class="resume-location">{{ entry.location }}</p>{% endif %}
+                  {% assign entry_description = entry.description | default: '' | strip %}
+                  {% if entry_description != empty %}<p class="resume-description">{{ entry_description }}</p>{% endif %}
+                  {% include resume-links.html links=entry.links %}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+          {% if section.id == 'experience' and section.entries.size > 1 %}
+                </div>
+                <button class="resume-more-toggle" type="button" aria-expanded="false" aria-controls="resume-older-experience" hidden>
+                  <span class="resume-more-label"><span class="resume-more-open">Show earlier experience</span><span class="resume-more-close">Show less</span></span>
+                </button>
+              </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </section>
+  {% endfor %}
+</div>
+<script src="{{ '/assets/js/resume.js' | relative_url }}" defer></script>

@@ -1,0 +1,35 @@
+<header class="publication-browser-header">
+  <div class="publication-browser-title">
+    <h1 class="dynamic-title">{{ page.title | escape }}</h1>
+    {% assign publication_years = include.posts | map: 'publication' | map: 'year' | sort %}
+    <p class="publication-filter-summary">{{ include.posts.size }} {% if include.posts.size == 1 %}publication{% else %}publications{% endif %}{% if publication_years.size > 0 %} since {{ publication_years.first }}{% endif %}.</p>
+  </div>
+  <div class="publication-filter-search" hidden>
+    <label for="publication-filter-query">Filter publications</label>
+    <div class="publication-filter-field">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input id="publication-filter-query" type="search" placeholder="Keyword, author or venue" autocomplete="off" spellcheck="false" aria-describedby="publication-filter-status">
+    </div>
+  </div>
+</header>
+<div class="publication-filters" hidden>
+  <div class="publication-filter-controls">
+    <div class="publication-filter-year">
+      <label for="publication-filter-year">Year</label>
+      <div class="publication-year-select">
+        <select id="publication-filter-year" aria-describedby="publication-filter-status">
+          <option value="">All years</option>
+        </select>
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+      </div>
+    </div>
+    <fieldset>
+      <legend>Venue</legend>
+      <div class="publication-filter-options"></div>
+    </fieldset>
+  </div>
+  <div class="publication-filter-footer">
+    <p id="publication-filter-status" class="publication-filter-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    <button type="button" class="publication-filter-clear" hidden>Clear filters</button>
+  </div>
+</div>

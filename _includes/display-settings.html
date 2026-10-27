@@ -1,0 +1,45 @@
+<dialog id="display-settings" class="display-settings" aria-labelledby="display-settings-title" aria-describedby="display-settings-description">
+  <div class="display-settings-header">
+    <h2 id="display-settings-title">Display</h2>
+    <button type="button" class="display-close" aria-label="Close display settings" autofocus>
+      <i class="fas fa-xmark" aria-hidden="true"></i>
+    </button>
+  </div>
+  <p id="display-settings-description">Adjust this site for comfortable reading. <span class="display-keyboard-hint">Keyboard: Tab between settings; arrow keys select an option. Enter or Space also activates a focused option.</span></p>
+
+  <fieldset>
+    <legend>Appearance</legend>
+    <div class="display-options">
+      <label><input type="radio" name="display-theme" value="light"><span>Light</span></label>
+      <label><input type="radio" name="display-theme" value="dark" checked><span>Dark</span></label>
+      <label><input type="radio" name="display-theme" value="system"><span>System</span></label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Text size</legend>
+    <div class="display-options">
+      <label><input type="radio" name="display-text-size" value="default" checked><span>Default</span></label>
+      <label><input type="radio" name="display-text-size" value="large"><span>Large</span></label>
+      <label><input type="radio" name="display-text-size" value="larger"><span>Larger</span></label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Line spacing</legend>
+    <div class="display-options">
+      <label><input type="radio" name="display-line-spacing" value="default" checked><span>Default</span></label>
+      <label><input type="radio" name="display-line-spacing" value="relaxed"><span>Relaxed</span></label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Contrast</legend>
+    <div class="display-options">
+      <label><input type="radio" name="display-contrast" value="default" checked><span>Standard</span></label>
+      <label><input type="radio" name="display-contrast" value="high"><span>High</span></label>
+    </div>
+  </fieldset>
+
+  <div class="display-settings-footer">
+    <p data-display-status role="status">Choices are saved in this browser.</p>
+    <button type="button" class="display-reset">Reset to defaults</button>
+  </div>
+</dialog>

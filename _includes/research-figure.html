@@ -1,0 +1,8 @@
+<figure class="research-figure">
+  <img src="{{ include.src | escape }}" alt="{{ include.alt | escape }}">
+  {% if include.caption %}
+    <figcaption>
+      {{ include.caption | escape }}
+    </figcaption>
+  {% endif %}
+</figure>

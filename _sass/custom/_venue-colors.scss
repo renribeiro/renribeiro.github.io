@@ -1,0 +1,57 @@
+.publication-entry,
+.publication-filter-options label {
+  --venue-accent: var(--venue-light, #536579);
+}
+
+@mixin dark-venue-colors {
+  .publication-entry,
+  .publication-filter-options label {
+    --venue-accent: var(--venue-dark, #bec9d6);
+  }
+}
+
+:root[data-bs-theme='dark'] { @include dark-venue-colors; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme]) { @include dark-venue-colors; }
+}
+
+.publication-entry .publication-venue::before {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-inline-end: 0.5em;
+  border-radius: 50%;
+  background: var(--venue-accent);
+  vertical-align: 0.1em;
+}
+
+.publication-filters {
+  label[data-venue]:not([data-venue='']):not([data-venue='__other__']) {
+    .publication-filter-label {
+      color: var(--venue-accent);
+      border-color: var(--venue-accent);
+    }
+
+    &:hover input:not(:checked) + .publication-filter-label {
+      background: color-mix(in srgb, var(--venue-accent) 6%, var(--main-bg));
+    }
+
+    input:checked + .publication-filter-label {
+      color: var(--venue-accent);
+      border-color: var(--venue-accent);
+      background: color-mix(in srgb, var(--venue-accent) 18%, var(--main-bg));
+      box-shadow: inset 0 0 0 1px var(--venue-accent);
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  .publication-filters label[data-venue]:not([data-venue='']):not([data-venue='__other__']) input:checked + .publication-filter-label {
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+    box-shadow: none;
+  }
+}

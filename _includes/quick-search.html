@@ -1,0 +1,21 @@
+<dialog id="quick-search" class="quick-search" aria-labelledby="quick-search-title" data-index-url="{{ '/assets/js/data/search.json' | relative_url }}">
+  <div class="quick-search-header">
+    <h2 id="quick-search-title">Search &amp; navigate</h2>
+    <button type="button" class="quick-search-close" aria-label="Close search"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+  </div>
+  <div class="quick-search-field">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <input id="quick-search-input" type="search" role="combobox" aria-label="Search pages and publications" aria-autocomplete="list" aria-expanded="false" aria-controls="quick-search-options" aria-describedby="quick-search-help" autocomplete="off" spellcheck="false" placeholder="Search pages, papers, authors, topics…" autofocus>
+  </div>
+  <p class="quick-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <div id="quick-search-options" role="listbox" aria-label="Pages and publications"></div>
+  <div class="quick-search-footer">
+    <p id="quick-search-help"><span><kbd>↑</kbd> <kbd>↓</kbd> Navigate</span><span><kbd>Enter</kbd> Open</span><span><kbd>Esc</kbd> Close</span></p>
+    <button type="button" class="quick-search-all">See all results</button>
+  </div>
+  <template id="quick-search-navigation">
+    <a href="{{ '/' | relative_url }}" data-icon="fa-home">Home</a>
+    {% for tab in site.tabs %}<a href="{{ tab.url | relative_url }}" data-icon="fa-file-lines">{{ tab.title | escape }}</a>{% endfor %}
+    {% if site.data.news.size > 0 %}<a href="{{ '/' | relative_url }}#news-title" data-icon="fa-newspaper">News</a>{% endif %}
+  </template>
+</dialog>

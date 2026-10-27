@@ -1,0 +1,24 @@
+{% assign news_years = include.items | group_by_exp: 'item', "item.date | date: '%Y'" %}
+{% assign news_position = 0 %}
+{% for year in news_years %}
+  <div class="news-group"{% if news_position >= include.limit %} data-news-extra{% endif %}>
+    <h3 class="news-year">{{ year.name }}</h3>
+    <ul class="list-unstyled mb-0">
+      {% for item in year.items %}
+        <li class="news-item"{% if news_position >= include.limit %} data-news-extra{% endif %}>
+          <time class="text-muted" datetime="{{ item.date | date: '%Y-%m-%d' }}">
+            {{ item.date | date: '%d %b' }}
+          </time>
+          <span class="news-text">
+            {% if item.url and item.url != empty %}
+              <a href="{{ item.url | relative_url | escape }}" target="_blank" rel="noopener noreferrer">{{ item.text | escape }}<span class="visually-hidden"> (opens in a new tab)</span></a>
+            {% else %}
+              {{ item.text | escape }}
+            {% endif %}
+          </span>
+        </li>
+        {% assign news_position = news_position | plus: 1 %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
