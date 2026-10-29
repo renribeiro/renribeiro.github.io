@@ -29,9 +29,6 @@ publication:
       url: https://doi.org/10.1145/3613904.3642088
     - label: BibTeX
       url: /assets/bibtex/chi2024-locomotion.bib
-    - label: Workshop poster
-      url: https://techandpeople.github.io/downloads/Poster_VR_Blind_Locomotion.pdf
-      show_on_card: false
     - label: Video
       url: https://www.youtube.com/watch?v=nqsMoseL2zM
       show_on_page: false
