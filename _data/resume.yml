@@ -45,7 +45,7 @@
     - organization: Faculdade de Ciências da Universidade de Lisboa
       location: Lisboa, Portugal
       qualifications:
-        - title: MSc in Informatics
+        - title: MSc in Computer Science
           date: 2021 - 2023
           links:
             - label: Master's dissertation
@@ -75,4 +75,4 @@
   id: service
   entries:
     - title: Conference peer reviewer
-      description: CHI, ASSETS, UIST, VRST, and CHI PLAY.
+      description: CHI, ASSETS, DIS, VRST, and UbiComp/ISWC.
