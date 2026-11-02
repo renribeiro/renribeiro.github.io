@@ -48,7 +48,9 @@
   --publication-teal: #17685f;
   --publication-purple: #65518b;
   --publication-amber: #945600;
-  --publication-rose: #a33d60;
+  --publication-rose: #a33d60; 
+  --publication-code: #335f86;
+  --publication-dataset: #596927;
 }
 
 @mixin publication-dark-colors {
@@ -56,6 +58,8 @@
   --publication-purple: #b9a7d8;
   --publication-amber: #f2ba49;
   --publication-rose: #e9a0b7;
+  --publication-code: #a6c8e5;
+  --publication-dataset: #c6d792;
 }
 
 :root[data-bs-theme='dark'] {
@@ -282,6 +286,14 @@
 
     &:is([data-resource='video'], [data-resource='presentation-video']) {
       --resource-accent: var(--publication-rose);
+    }
+    
+    &[data-resource='code'] {
+      --resource-accent: var(--publication-code);
+    }
+    
+    &[data-resource='dataset'] {
+      --resource-accent: var(--publication-dataset);
     }
 
     &:focus-visible {
