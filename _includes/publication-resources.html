@@ -38,6 +38,12 @@
           {% else %}
             {% assign resource_icon = 'fas fa-code' %}
           {% endif %}
+        {% when 'dataset' %}
+          {% if link.url contains 'huggingface.co/' %}
+            {% assign resource_icon = 'fa-brands fa-hugging-face' %}
+          {% else %}
+            {% assign resource_icon = 'fas fa-database' %}
+          {% endif %}
         {% when 'bibtex' %}{% assign resource_icon = 'fas fa-quote-right' %}
         {% when 'slides', 'talk slide', 'talk slides' %}{% assign resource_icon = 'fas fa-display' %}
         {% else %}{% assign resource_icon = 'fas fa-link' %}
