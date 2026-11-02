@@ -82,6 +82,10 @@ publication:
       url: https://doi.org/10.48550/arXiv.2607.21964
     - label: BibTeX
       url: /assets/bibtex/arxiv2026-acme.bib
+    - label: Dataset
+      url: https://huggingface.co/datasets/acmesocnavdataset/ACME-dataset
+    - label: Code
+      url: https://github.com/social-navigation-group/sbpd-dataset-pipeline
 publication_page: true
 narration_audio: /assets/audio/acme_lewis.mp3
 narration_minutes: 3
