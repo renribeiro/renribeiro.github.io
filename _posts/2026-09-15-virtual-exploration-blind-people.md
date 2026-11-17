@@ -29,6 +29,8 @@ publication:
   links:
     - label: Paper
       url: /assets/pdf/vrst_2026.pdf
+    - label: DOI
+      url: https://doi.org/10.1145/3822517.3848690
     - label: BibTeX
       url: /assets/bibtex/vrst2026-virtual-exploration.bib
 publication_page: true
