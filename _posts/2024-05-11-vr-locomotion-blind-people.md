@@ -32,6 +32,9 @@ publication:
     - label: Video
       url: https://www.youtube.com/watch?v=nqsMoseL2zM
       show_on_page: false
+    - label: Code
+      url: https://git.lasige.di.fc.ul.pt/raribeiro/vr-locomotion-blind-people
+      show_on_page: false
 research_media:
   presentation: nqsMoseL2zM
 publication_page: true
